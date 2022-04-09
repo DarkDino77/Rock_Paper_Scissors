@@ -1,32 +1,39 @@
-console.log("Hello World");
-//Make a veriable for player choices    1
-//make a verible for computer choices   2 
-//Let player chose a veriable           5
-//Let computer make a choices           3
-//Comper if player or computer won      4
-//Output the winner                     6
-//Repet game 5 times                    7
+
+function game(){
+    for (let i = 0; i < 5; i++) {
+        //Make a veriable for player choices 
+        const playerChoice = playerPlay();
+        //make a verible for computer choices
+        const computerChoice = computerPlay();
+        //Repet game 5 times 
+        let outcome = playRound(playerChoice,computerChoice);
+        //Output the winner 
+        console.log(outcome);
+     }     
+}
 
 //Comper if player or computer won      
-//By cheking if player 
+//By cheking if its draw or the player or computer has better hand 
 function playRound(playerChoice, computerChoice){
-    if(computerChoice == playerChoice){return "Draw";}
+    let X;
+    if(computerChoice == playerChoice){X = "Draw";}
     else{
         switch(computerChoice){
             case "rock": 
-                 if(playerChoice == "scissors"){return "Lose";}
-                 if(playerChoice == "paper"){return "Win";}
+                 if(playerChoice == "scissors"){X = "Lose";}
+                 if(playerChoice == "paper"){X = "Win";}
                   break;
              case "paper":
-                 if(playerChoice == "rock"){return "Lose";}
-                 if(playerChoice == "scissors"){return "Win";}
+                 if(playerChoice == "rock"){X = "Lose";}
+                 if(playerChoice == "scissors"){X = "Win";}
                  break;
             case "scissors":
-                 if(playerChoice == "paper"){return "Lose";}
-                 if(playerChoice == "rock"){return "Win";}
+                 if(playerChoice == "paper"){X = "Lose";}
+                 if(playerChoice == "rock"){X = "Win";}
                  break;
         }
     }
+    return X +" the computer had "+ computerChoice;
 }
 
 //Let computer make a choices           
@@ -38,9 +45,18 @@ function computerPlay(){
     if(rand == 2){return "paper";}
     if(rand == 3){return "scissors";}
 }
-//Make a veriable for player choices 
-const playerChoice = "rock";
-//make a verible for computer choices
-const computerChoice = computerPlay();
-console.log(computerChoice);
-console.log(playRound(playerChoice,computerChoice));
+//Let player chose a veriable     
+function playerPlay(){
+    let choice;
+    let keepgoing = true; 
+    while (keepgoing) {
+        choice = prompt("rock, paper or scissors").toLowerCase();
+        if (choice == "rock" || choice == "scissors"|| choice == "paper" ){
+            keepgoing = false;
+        }
+       if(keepgoing){console.log("Invalid option try again");}
+    }
+    return choice;
+}
+
+game();
