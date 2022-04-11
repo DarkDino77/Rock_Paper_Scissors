@@ -1,13 +1,13 @@
 
 function game(playerChoice){
-  
+
     //const playerChoice = playerPlay();
     //make a verible for computer choices
     const computerChoice = computerPlay();
     //Repet game 5 times 
     let outcome = playRound(playerChoice,computerChoice);
     //Output the winner 
-    console.log(outcome);      
+    results(outcome);     
 }
 
 //Comper if player or computer won      
@@ -72,3 +72,16 @@ buttond.forEach((button) => {
       game(button.id);
     });
   });
+  const result = document.querySelector('#result');
+  function results(outcome){
+      //print out result 
+      //Manipulating div
+    //creating new element
+    const content = document.createElement('h1');
+    //adding the new element to class 
+    content.classList.add('content');
+    //adding text to element 
+    content.textContent = outcome;
+    //adding element to document 
+    result.appendChild(content);
+  }
