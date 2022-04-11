@@ -1,15 +1,13 @@
 
-function game(){
-    for (let i = 0; i < 5; i++) {
-        //Make a veriable for player choices 
-        const playerChoice = playerPlay();
-        //make a verible for computer choices
-        const computerChoice = computerPlay();
-        //Repet game 5 times 
-        let outcome = playRound(playerChoice,computerChoice);
-        //Output the winner 
-        console.log(outcome);
-     }     
+function game(playerChoice){
+  
+    //const playerChoice = playerPlay();
+    //make a verible for computer choices
+    const computerChoice = computerPlay();
+    //Repet game 5 times 
+    let outcome = playRound(playerChoice,computerChoice);
+    //Output the winner 
+    console.log(outcome);      
 }
 
 //Comper if player or computer won      
@@ -45,9 +43,10 @@ function computerPlay(){
     if(rand == 2){return "paper";}
     if(rand == 3){return "scissors";}
 }
-//Let player chose a veriable     
+//Let player chose a veriable   
+/*  
 function playerPlay(){
-    let choice;
+
     let keepgoing = true; 
     while (keepgoing) {
         choice = prompt("rock, paper or scissors").toLowerCase();
@@ -58,5 +57,18 @@ function playerPlay(){
     }
     return choice;
 }
+*/
+const buttons = document.querySelector('#buttons');
 
-game();
+  // buttons is a node list. It looks and acts much like an array.
+const buttond = document.querySelectorAll('button');
+
+  // we use the .forEach method to iterate through each button
+buttond.forEach((button) => {
+  
+    // and for each one we add a 'click' listener
+    button.addEventListener('click', () => {
+      
+      game(button.id);
+    });
+  });
