@@ -1,4 +1,5 @@
-
+var playerPoints = 0;
+var computerPoints = 0;
 function game(playerChoice){
 
     //const playerChoice = playerPlay();
@@ -8,6 +9,7 @@ function game(playerChoice){
     let outcome = playRound(playerChoice,computerChoice);
     //Output the winner 
     results(outcome);     
+    if (playerPoints == 5 || computerPoints == 5){end()};
 }
 
 //Comper if player or computer won      
@@ -31,7 +33,9 @@ function playRound(playerChoice, computerChoice){
                  break;
         }
     }
-    return X +" the computer had "+ computerChoice;
+    if (X == "Lose"){computerPoints++;}
+    if (X == "Win"){playerPoints++;}
+    return X +" the computer had "+ computerChoice +" you had "+ playerChoice;
 }
 
 //Let computer make a choices           
@@ -73,6 +77,7 @@ buttond.forEach((button) => {
     });
   });
   const result = document.querySelector('#result');
+  const score = document.querySelector('#score');
   function results(outcome){
       //print out result 
       //Manipulating div
@@ -85,3 +90,4 @@ buttond.forEach((button) => {
     //adding element to document 
     result.appendChild(content);
   }
+  
