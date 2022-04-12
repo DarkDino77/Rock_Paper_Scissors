@@ -1,5 +1,6 @@
 var playerPoints = 0;
 var computerPoints = 0;
+var endvar = 0;
 function game(playerChoice){
 
     //const playerChoice = playerPlay();
@@ -10,7 +11,13 @@ function game(playerChoice){
     //Output the winner 
     results(outcome);     
     updateScore();
-    if (playerPoints == 5 || computerPoints == 5){end()};
+    if (playerPoints == 5 || computerPoints == 5){
+      if (endvar == 0) {
+        end();
+        endvar++;
+      }  
+
+    };
 }
 
 //Comper if player or computer won      
@@ -112,15 +119,19 @@ buttond.forEach((button) => {
   }
 
   const ending = document.querySelector('#ending');
+
+  const contents = document.createElement('h1');
+  contents.classList.add('content');
+  ending.appendChild(contents);
+
   function end(){
-    const contents = document.createElement('h1');
-    contents.classList.add('content');
+
     if (playerPoints == 5) {
       contents.textContent = "Winner"
     }
     if (computerPoints == 5) {
       contents.textContent = "Loser"
     }
-    ending.appendChild(contents);
+
 
   }
