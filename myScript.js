@@ -9,6 +9,7 @@ function game(playerChoice){
     let outcome = playRound(playerChoice,computerChoice);
     //Output the winner 
     results(outcome);     
+    updateScore();
     if (playerPoints == 5 || computerPoints == 5){end()};
 }
 
@@ -72,22 +73,54 @@ buttond.forEach((button) => {
   
     // and for each one we add a 'click' listener
     button.addEventListener('click', () => {
-      
+
       game(button.id);
     });
   });
+
   const result = document.querySelector('#result');
+  //creating resutlt of round 
+  const content = document.createElement('h1');
+  //adding the new element to class 
+  content.classList.add('content');
+  //adding element to document 
+  result.appendChild(content);
+
   const score = document.querySelector('#score');
   function results(outcome){
-      //print out result 
-      //Manipulating div
-    //creating new element
-    const content = document.createElement('h1');
-    //adding the new element to class 
-    content.classList.add('content');
-    //adding text to element 
+    //print out result 
+    //adding text to element result
     content.textContent = outcome;
-    //adding element to document 
-    result.appendChild(content);
   }
-  
+
+  //creat score for player
+  const sc1 = document.createElement('h1');
+  sc1.classList.add('content');
+  score.appendChild(sc1);
+
+  //creat score for computer
+  const sc2 = document.createElement('h1');
+  sc2.classList.add('content');
+  score.appendChild(sc2);
+
+  //uppdate the score 
+  function updateScore(){
+    //uppdate score for player 
+    sc1.textContent = "The Player has: " + playerPoints;
+    //uppdate scoer for computer
+    sc2.textContent = "The Computer has: " + computerPoints;
+  }
+
+  const ending = document.querySelector('#ending');
+  function end(){
+    const contents = document.createElement('h1');
+    contents.classList.add('content');
+    if (playerPoints == 5) {
+      contents.textContent = "Winner"
+    }
+    if (computerPoints == 5) {
+      contents.textContent = "Loser"
+    }
+    ending.appendChild(contents);
+
+  }
